@@ -1,3 +1,3 @@
 # react-colt
 
-this is react training exercises
+this are the react training exercises
