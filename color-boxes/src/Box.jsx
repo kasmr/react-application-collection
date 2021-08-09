@@ -4,13 +4,9 @@ export default class Box extends Component {
   render() {
     return (
       <div
-        onClick={this.props.newRandomColor}
         className='box'
-        style={
-          !this.props.newColor
-            ? { backgroundColor: `#${this.props.color}` }
-            : { backgroundColor: `#${this.props.newColor}` }
-        }
+        style={{ backgroundColor: this.props.color }}
+        id={this.props.id}
       ></div>
     );
   }
