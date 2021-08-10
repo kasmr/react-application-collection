@@ -11,7 +11,9 @@ export default class BoxesContainer extends Component {
   }
 
   generateRandomColor = () =>
-    `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
+      Math.random() * 255
+    )}, ${Math.floor(Math.random() * 255)})`;
 
   generateArray = () => {
     let array = [];
@@ -25,14 +27,26 @@ export default class BoxesContainer extends Component {
     return array;
   };
 
-  handleClick = (clickedBox) => {
-    const newBoxes = [...this.state.boxes];
+  generateUniqueColor = (currentColor) => {
+    const newColor = this.generateRandomColor();
+    return newColor !== currentColor
+      ? newColor
+      : this.generateUniqueColor(currentColor);
+  };
 
-    newBoxes.map((box) =>
-      clickedBox.id === box.id ? (box.color = this.generateRandomColor()) : box
-    );
+  handleClick = (e) => {
+    const currentColor = e.target.style.backgroundColor;
+    const currentId = e.target.id;
+    const newBoxes = this.state.boxes.map((box) => {
+      return box.id === currentId
+        ? {
+            ...box,
+            color: this.generateUniqueColor(currentColor),
+          }
+        : box;
+    });
 
-    this.setState((state) => ({ newBoxes }));
+    this.setState({ boxes: newBoxes });
   };
 
   render() {
@@ -44,7 +58,6 @@ export default class BoxesContainer extends Component {
             color={box.color}
             handleClick={this.handleClick}
             id={box.id}
-            box={box}
           />
         ))}
       </div>
