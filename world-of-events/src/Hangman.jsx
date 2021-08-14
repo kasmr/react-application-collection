@@ -49,6 +49,7 @@ class Hangman extends Component {
         value={ltr}
         onClick={this.handleGuess}
         disabled={this.state.guessed.has(ltr)}
+        key={ltr}
       >
         {ltr}
       </button>
@@ -57,12 +58,27 @@ class Hangman extends Component {
 
   /** render: render game */
   render() {
+    if (this.props.maxWrong === this.state.nWrong) {
+      return (
+        <div className='Hangman'>
+          <h1>The word was:</h1>
+          <p className='Hangman-word'>{this.state.answer}</p>
+          <h2>You are dead !</h2>
+          <img alt='6/6' src={this.props.images[this.state.nWrong]} />
+          <p>Wrong guesses: {this.state.nWrong} </p>
+        </div>
+      );
+    }
     return (
       <div className='Hangman'>
         <h1>Hangman Game</h1>
         <p className='Hangman-word'>{this.guessedWord()}</p>
         <p className='Hangman-btns'>{this.generateButtons()}</p>
-        <img src={this.props.images[this.state.nWrong]} />
+        <img
+          alt={`${this.state.nWrong} / 6`}
+          src={this.props.images[this.state.nWrong]}
+        />
+        <p>Wrong guesses: {this.state.nWrong} </p>
       </div>
     );
   }

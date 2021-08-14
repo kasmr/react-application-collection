@@ -23,9 +23,14 @@
   margin-top: 0;
 }
 
+.Hangman h2 {
+  font-size: 3.1rem;
+  font-weight: 100;
+}
+
 .Hangman-word {
   letter-spacing: 1em;
-  margin: 0.4em -1em 0.2em 0;
+  margin: 0.1em -1em 0.2em 0;
   font-size: 2rem;
 }
 
