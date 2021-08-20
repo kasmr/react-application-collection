@@ -6,9 +6,10 @@ export default class NewBox extends Component {
     return (
       <div
         style={{
-          background: `${color}`,
-          height: `${height}`,
-          width: `${width}`,
+          background: color,
+          height: `${height}px`,
+          width: `${width}px`,
+          margin: '10px auto',
         }}
       ></div>
     );
