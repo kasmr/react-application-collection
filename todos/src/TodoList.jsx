@@ -5,19 +5,15 @@ export default class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [],
+      todos: [{ text: 'asdasd', id: '559uj' }],
     };
   }
   render() {
     return (
-      <div>
-        Todo list
-        <Todo />
-        <form>
-          <label />
-          <input type='text' />
-        </form>
-        <button>Add todo</button>
+      <div className='todo-list'>
+        {this.state.todos.map((todo) => (
+          <Todo key={todo.id} todo={todo} />
+        ))}
       </div>
     );
   }
