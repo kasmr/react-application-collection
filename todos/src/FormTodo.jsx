@@ -27,7 +27,7 @@ export default class FormTodo extends Component {
       <div className='form-div'>
         <form onSubmit={this.handleSubmit}>
           <input
-            placeholder='New todo'
+            placeholder='Start writing New todo here...'
             value={this.state.text}
             onChange={this.onChange}
             type='text'
@@ -36,7 +36,7 @@ export default class FormTodo extends Component {
           />
         </form>
         <button type='submit' onClick={this.handleSubmit}>
-          <i className='fas fa-plus'></i>
+          <i className='fas fa-plus-circle'></i>
         </button>
       </div>
     );

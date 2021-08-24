@@ -7,7 +7,7 @@ export default class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [{ text: 'task 1', id: uuidV4() }],
+      todos: [{ text: 'Task №1 - make more tasks!', id: uuidV4() }],
     };
   }
 
