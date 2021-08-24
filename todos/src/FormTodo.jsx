@@ -15,9 +15,11 @@ export default class FormTodo extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newTodo = { text: this.state.text, id: uuidV4() };
-    this.props.addTodo(newTodo);
-    this.setState({ text: '' });
+    if (this.state.text) {
+      const newTodo = { text: this.state.text, id: uuidV4() };
+      this.props.addTodo(newTodo);
+      this.setState({ text: '' });
+    }
   };
 
   render() {
@@ -30,10 +32,11 @@ export default class FormTodo extends Component {
             onChange={this.onChange}
             type='text'
             maxLength={33}
+            required
           />
         </form>
         <button type='submit' onClick={this.handleSubmit}>
-          Add todo
+          <i className='fas fa-plus'></i>
         </button>
       </div>
     );

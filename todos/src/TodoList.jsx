@@ -25,14 +25,16 @@ export default class TodoList extends Component {
   };
 
   updateTodo = (text, id) => {
-    const updatedTodo = { text, id };
-    this.setState({
-      todos: [
-        ...this.state.todos.map((todo) =>
-          todo.id === id ? updatedTodo : todo
-        ),
-      ],
-    });
+    if (text) {
+      const updatedTodo = { text, id };
+      this.setState({
+        todos: [
+          ...this.state.todos.map((todo) =>
+            todo.id === id ? updatedTodo : todo
+          ),
+        ],
+      });
+    }
   };
 
   render() {

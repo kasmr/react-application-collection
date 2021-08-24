@@ -36,7 +36,7 @@ export default class Todo extends Component {
               maxLength={33}
             />
             <button type='submit'>
-              <i>change</i>
+              <i className='far fa-edit'></i>
             </button>
           </form>
         </div>
@@ -47,12 +47,8 @@ export default class Todo extends Component {
       <div className='single-todo'>
         <p>{this.props.todo.text}</p>
         <div className='buttons-group'>
-          <button onClick={this.startEditing}>
-            <i>C</i>
-          </button>
-          <button onClick={this.props.deleteTodo}>
-            <i>x</i>
-          </button>
+          <i className='fas fa-pencil-alt' onClick={this.startEditing}></i>
+          <i className='fas fa-trash-alt' onClick={this.props.deleteTodo}></i>
         </div>
       </div>
     );

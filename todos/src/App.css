@@ -39,7 +39,11 @@
   display: flex;
   height: 50px;
   width: 300px;
-  margin: 1rem;
+  margin: 2rem;
+}
+
+.form-div form {
+  display: flex;
 }
 
 form {
@@ -51,6 +55,7 @@ form input[type='text' i] {
   height: 46px;
   margin: 0;
   padding: 0;
+  outline: none;
 }
 
 .todo-list {
@@ -80,9 +85,19 @@ form input[type='text' i] {
   justify-self: flex-end;
 }
 
+.single-todo form {
+  display: flex;
+  justify-content: space-between;
+}
+
 .buttons-group {
   margin: 1rem;
 }
 
-.todos {
+.fa-pencil-alt {
+  margin-right: 1rem;
+}
+
+i {
+  cursor: pointer;
 }

@@ -7,7 +7,7 @@ function App() {
     <div className='App'>
       <div className='app-container'>
         <h1>Todo list!</h1>
-        <p>Do it now you lazy...</p>
+        <p>Do it now you lazy bastard!</p>
         <TodoList />
       </div>
     </div>
