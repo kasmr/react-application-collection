@@ -4,8 +4,8 @@ export default class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEditing: false,
       text: '',
+      isEditing: false,
     };
   }
 
@@ -17,21 +17,26 @@ export default class Todo extends Component {
     this.setState({ text: e.target.value });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.updateTodo(this.state.text, this.props.todo.id);
+    this.setState({ text: '', isEditing: false });
+  };
+
   render() {
     if (this.state.isEditing) {
       return (
         <div className='single-todo'>
-          <form
-          // onSubmits={(e) => this.props.updateTodo(this.state.text, this.props.id, e)}
-          >
+          <form onSubmit={this.handleSubmit}>
             <input
               type='text'
               placeholder={this.props.todo.text}
               value={this.state.text}
               onChange={this.handleChange}
+              maxLength={33}
             />
-            <button>
-              <i>x</i>
+            <button type='submit'>
+              <i>change</i>
             </button>
           </form>
         </div>

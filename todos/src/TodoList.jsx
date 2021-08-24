@@ -24,12 +24,15 @@ export default class TodoList extends Component {
     this.setState({ todos: newTodoList });
   };
 
-  updateTodo = (text, id, e) => {
-    e.preventDefault();
-    const updatedTodoList = this.state.todos.filter((todo) =>
-      todo.id === id && todo.text !== text ? text : todo.text
-    );
-    this.setState({ todos: updatedTodoList });
+  updateTodo = (text, id) => {
+    const updatedTodo = { text, id };
+    this.setState({
+      todos: [
+        ...this.state.todos.map((todo) =>
+          todo.id === id ? updatedTodo : todo
+        ),
+      ],
+    });
   };
 
   render() {
@@ -41,7 +44,7 @@ export default class TodoList extends Component {
               key={todo.id}
               todo={todo}
               deleteTodo={() => this.deleteTodo(todo.id)}
-              updateTodo={() => this.updateTodo()}
+              updateTodo={this.updateTodo}
             />
           ))}
         </div>

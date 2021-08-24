@@ -29,6 +29,7 @@ export default class FormTodo extends Component {
             value={this.state.text}
             onChange={this.onChange}
             type='text'
+            maxLength={33}
           />
         </form>
         <button type='submit' onClick={this.handleSubmit}>
