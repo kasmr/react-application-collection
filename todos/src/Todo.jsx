@@ -6,6 +6,7 @@ export default class Todo extends Component {
     this.state = {
       text: '',
       isEditing: false,
+      isCompleted: false,
     };
   }
 
@@ -21,6 +22,10 @@ export default class Todo extends Component {
     e.preventDefault();
     this.props.updateTodo(this.state.text, this.props.todo.id);
     this.setState({ text: '', isEditing: false });
+  };
+
+  handleClick = () => {
+    this.setState({ isCompleted: !this.state.isCompleted });
   };
 
   render() {
@@ -44,7 +49,12 @@ export default class Todo extends Component {
     }
 
     return (
-      <div className='single-todo'>
+      <div
+        className={
+          this.state.isCompleted ? 'single-todo completed' : 'single-todo'
+        }
+        onClick={this.handleClick}
+      >
         <p>{this.props.todo.text}</p>
         <div className='buttons-group'>
           <i className='fas fa-pencil-alt' onClick={this.startEditing}></i>
