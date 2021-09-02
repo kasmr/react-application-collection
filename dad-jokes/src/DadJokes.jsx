@@ -11,6 +11,11 @@ export default class DadJokes extends Component {
   }
 
   async componentDidMount() {
+    if (window.localStorage.length !== 0) {
+      const localStorageArray = window.localStorage.getItem('array');
+      this.setState({ dadJokes: JSON.parse(localStorageArray) });
+    }
+
     const getJokes = await fetch('https://icanhazdadjoke.com/search', {
       headers: { Accept: 'application/json' },
     });
@@ -24,6 +29,7 @@ export default class DadJokes extends Component {
     }));
 
     this.setState({ dadJokes: dadJokesArray, currPage: current_page });
+    window.localStorage.setItem('array', JSON.stringify(dadJokesArray));
   }
 
   handleNewJokes = async () => {
@@ -46,6 +52,9 @@ export default class DadJokes extends Component {
       dadJokes: dadJokesArray,
       currPage: prevSt.currPage + 1,
     }));
+
+    window.localStorage.clear();
+    window.localStorage.setItem('array', JSON.stringify(dadJokesArray));
   };
 
   handleScoreChange = (id, delta) => {
@@ -66,15 +75,17 @@ export default class DadJokes extends Component {
           {this.state.dadJokes.length === 0 ? (
             <h1>There is no any jokes left</h1>
           ) : (
-            this.state.dadJokes.map((item) => (
-              <SingleJoke
-                joke={item.joke}
-                id={item.id}
-                score={item.score}
-                key={item.id}
-                handleScoreChange={this.handleScoreChange}
-              />
-            ))
+            this.state.dadJokes
+              .sort((a, b) => b.score - a.score)
+              .map((item) => (
+                <SingleJoke
+                  joke={item.joke}
+                  id={item.id}
+                  score={item.score}
+                  key={item.id}
+                  handleScoreChange={this.handleScoreChange}
+                />
+              ))
           )}
         </div>
       </div>
