@@ -1,0 +1,35 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.vending_machine {
+  position: relative;
+  background-image: url('./assets/vending_machine.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.vending_machine .nav {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.vending_machine .nav li {
+  margin-right: 20%;
+  list-style-type: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
