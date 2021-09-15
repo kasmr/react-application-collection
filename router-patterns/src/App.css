@@ -1,12 +1,27 @@
 .App {
   width: 100vw;
   height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #474afd;
+  color: white;
+}
+
+.search {
   display: flex;
   justify-content: center;
-  align-self: center;
+  align-items: center;
 }
 
 img {
   margin: 3rem;
   width: 600px;
+}
+
+a {
+  color: black;
 }

@@ -4,14 +4,17 @@ import { BrowserRouter } from 'react-router-dom';
 import Food from './Food';
 import './App.css';
 import Meal from './Meal';
+import Search from './Search';
+import Navbar from './Navbar';
 
 export default class App extends Component {
   render() {
     return (
       <div className='App'>
         <BrowserRouter>
+          <Navbar />
           <Switch>
-            <Route exact path='/' render={() => <h1>Home page!</h1>} />
+            <Route exact path='/' component={Search} />
             <Route
               exact
               path='/food/:name'
