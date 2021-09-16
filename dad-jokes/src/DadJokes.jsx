@@ -16,19 +16,13 @@ export default class DadJokes extends Component {
       this.setState({ dadJokes: JSON.parse(localStorageArray) });
     }
 
-    const getJokes = await fetch('https://icanhazdadjoke.com/search', {
+    const fetchJokes = await fetch('https://icanhazdadjoke.com/search', {
       headers: { Accept: 'application/json' },
     });
 
-    const { results, current_page } = await getJokes.json();
+    const { results, current_page } = await fetchJokes.json();
 
-    const dadJokesArray = results.map((item) => ({
-      joke: item.joke,
-      id: item.id,
-      score: 5,
-    }));
-
-    this.setState({ dadJokes: dadJokesArray, currPage: current_page });
+    this.setState({ dadJokes: this.getJokes(results), currPage: current_page });
     window.localStorage.setItem('array', JSON.stringify(dadJokesArray));
   }
 
@@ -42,14 +36,8 @@ export default class DadJokes extends Component {
 
     const { results } = await getNewJokes.json();
 
-    const dadJokesArray = results.map((item) => ({
-      joke: item.joke,
-      id: item.id,
-      score: 5,
-    }));
-
     this.setState((prevSt) => ({
-      dadJokes: dadJokesArray,
+      dadJokes: this.getJokes(results),
       currPage: prevSt.currPage + 1,
     }));
 
@@ -64,6 +52,19 @@ export default class DadJokes extends Component {
       ),
     }));
   };
+  
+  
+  getJokes(response){
+    if(!response?.lenght) {
+      console.log("Nothing been returned from server!")
+      return [];
+      }
+    return response.map((item) => ({
+      joke: item.joke,
+      id: item.id,
+      score: 5,
+    }))
+  }
 
   render() {
     return (
