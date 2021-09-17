@@ -17,6 +17,11 @@
   align-items: center;
 }
 
+.toggler {
+  display: flex;
+  justify-content: space-around;
+}
+
 img {
   margin: 3rem;
   width: 600px;
